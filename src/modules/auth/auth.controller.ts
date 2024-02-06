@@ -1,8 +1,11 @@
 import { HttpResponse } from "../../constants/interfaces";
 import UsersService from "./auth.service";
 import { Response, Router, Request } from "express";
-import httpStatus, { ReasonPhrases } from "http-status-codes";
-import { UserDTO } from "../users/interfaces";
+import httpStatus from "http-status-codes";
+import { UserDTO, ValidateUserDTO } from "../users/interfaces";
+import { getError } from "../../toolbox/getError";
+import { ValidatePayload } from "../../toolbox/ValidatePayload";
+import { ValidateAuthDTO } from "./interfaces";
 
 export default class ProductController {
   constructor(private usersService: UsersService) {}
@@ -14,26 +17,26 @@ export default class ProductController {
     router.post("/refresh-token", this.refreshToken.bind(this));
     return router;
   }
+  @ValidatePayload(ValidateUserDTO)
   async signup(req: Request, res: Response) {
     const payload = req.body as unknown as UserDTO;
     try {
       await this.usersService.signup(payload);
       res.status(httpStatus.CREATED).json({ message: "success" });
     } catch (err) {
-      res
-        .status(httpStatus.INTERNAL_SERVER_ERROR)
-        .json({ message: ReasonPhrases.INTERNAL_SERVER_ERROR });
+      const { status, message } = getError(err);
+      res.status(status).json({ message: message });
     }
   }
+  @ValidatePayload(ValidateAuthDTO)
   async signIn(req: Request, res: Response) {
     const payload = req.body as unknown as UserDTO;
     try {
       const response = await this.usersService.signIn(payload);
       res.status(httpStatus.OK).json({ data: response });
-    } catch (err) {
-      res
-        .status(httpStatus.INTERNAL_SERVER_ERROR)
-        .json({ message: ReasonPhrases.INTERNAL_SERVER_ERROR });
+    } catch (err: any) {
+      const { status, message } = getError(err);
+      res.status(status).json({ message: message });
     }
   }
   async refreshToken(req: Request, res: Response) {
@@ -42,14 +45,8 @@ export default class ProductController {
       const response = await this.usersService.refreshToken(body.token);
       res.status(httpStatus.OK).json({ data: response });
     } catch (err) {
-      res
-        .status(httpStatus.INTERNAL_SERVER_ERROR)
-        .json({ message: ReasonPhrases.INTERNAL_SERVER_ERROR });
+      const { status, message } = getError(err);
+      res.status(status).json({ message: message });
     }
-  }
-  async getUsers(req: Request, res: Response) {
-    const response: HttpResponse<UserDTO[]> = {};
-
-    res.contentType("application/json");
   }
 }

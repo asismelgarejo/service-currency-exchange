@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { ReasonPhrases } from "http-status-codes";
 
 export type HttpResponse<T> = {
   data?: T;
@@ -24,3 +25,19 @@ export type Middlewares = Record<
   string,
   (req: Request, res: Response, next: NextFunction) => void
 >;
+
+export class ErrorNotFound extends Error {
+  constructor(message: string) {
+    super(`${ReasonPhrases.NOT_FOUND}: ${message}`);
+  }
+}
+export class ErrorNotAuthorized extends Error {
+  constructor(message: string) {
+    super(`${ReasonPhrases.UNAUTHORIZED}: ${message}`);
+  }
+}
+export class ErrorBadRequest extends Error {
+  constructor(message: string) {
+    super(`${ReasonPhrases.BAD_REQUEST}: ${message}`);
+  }
+}

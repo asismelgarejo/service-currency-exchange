@@ -7,8 +7,10 @@
     "outDir": "./dist",
     "rootDir": "./",
     "resolveJsonModule": true,
+    "experimentalDecorators": true,
     "strict": true,
-    "typeRoots": ["./src/custom_types", "./node_modules/@types"],
+    "strictPropertyInitialization": false, 
+    "typeRoots": ["./src/custom_types", "./node_modules/@types"]
   },
   "ts-node": {
     "esm": true,

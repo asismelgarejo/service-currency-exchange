@@ -7,15 +7,15 @@ export enum TipoDeCambio {
 }
 export class ExchangeRequestsDTO {
   @IsNumber()
-  MontoEnviar: number;
+  monto_enviar: number;
 
   @IsEnum(TipoDeCambio)
-  TipoDeCambio?: TipoDeCambio;
+  tipo_de_cambio?: TipoDeCambio;
 }
 export const ValidateExchangeRequestDTO = (data: any) => {
   const payload = data as ExchangeRequestsDTO;
   const record = new ExchangeRequestsDTO();
-  record.MontoEnviar = payload.MontoEnviar;
-  record.TipoDeCambio = payload.TipoDeCambio;
+  record.monto_enviar = payload.monto_enviar;
+  record.tipo_de_cambio = payload.tipo_de_cambio;
   return validateSync(record);
 };

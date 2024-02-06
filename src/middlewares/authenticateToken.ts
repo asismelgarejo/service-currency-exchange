@@ -9,14 +9,11 @@ export const authenticateToken = (userService: UsersService) => {
     const token = authHeader ? authHeader.split(" ")[1] : "";
 
     if (token === "") {
-      res.status(httpStatus.UNAUTHORIZED).json({});
+      res.status(httpStatus.UNAUTHORIZED).json({ message: "UNAUTHORIZED" });
       return;
     }
     try {
-      const response = jwt.verify(
-        token,
-        process.env.ACCESS_TOKEN_SECRET || ""
-      ) as { email: string };
+      const response = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET || "") as { email: string };
 
       const user = await userService.findUser(response.email);
 
@@ -30,8 +27,8 @@ export const authenticateToken = (userService: UsersService) => {
 
       next();
     } catch (err) {
-      console.log("authenticateToken", err);
-      res.status(httpStatus.FORBIDDEN).json({});
+      console.log("authenticateToken", err?.message);
+      res.status(httpStatus.UNAUTHORIZED).json({ message: "UNAUTHORIZED" });
       return;
     }
   };

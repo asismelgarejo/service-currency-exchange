@@ -1,11 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
+import { Types } from "mongoose";
 import {
   ExchangeRequestsDTO,
-  TipoDeCambio,
   ExchangeRequestsModelType,
-} from "./interfaces";
-import { CambioSeguroResponse, HttpResponse } from "../../constants/interfaces";
-import { Types } from "mongoose";
+} from "./interfaces/index.js";
+import { CambioSeguroResponse } from "../../constants/interfaces.js";
 
 export default class UsersService {
   constructor(private model: ExchangeRequestsModelType) {}

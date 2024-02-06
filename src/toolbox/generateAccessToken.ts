@@ -1,5 +1,5 @@
-import { UserDTO } from "../modules/users/interfaces";
 import jwt from "jsonwebtoken";
+import { UserDTO } from "../modules/users/interfaces/index.js";
 
 export function generateAccessToken(userDto: UserDTO) {
   const accessToken = jwt.sign(

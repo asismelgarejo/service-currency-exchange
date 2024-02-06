@@ -1,11 +1,10 @@
-import { HttpResponse } from "../../constants/interfaces";
-import UsersService from "./auth.service";
 import { Response, Router, Request } from "express";
 import httpStatus from "http-status-codes";
-import { UserDTO, ValidateUserDTO } from "../users/interfaces";
-import { getError } from "../../toolbox/getError";
-import { ValidatePayload } from "../../toolbox/ValidatePayload";
-import { ValidateAuthDTO } from "./interfaces";
+import UsersService from "./auth.service.js";
+import { UserDTO, ValidateUserDTO } from "../users/interfaces/index.js";
+import { getError } from "../../toolbox/getError.js";
+import { ValidatePayload } from "../../toolbox/ValidatePayload.js";
+import { ValidateAuthDTO } from "./interfaces/index.js";
 
 export default class ProductController {
   constructor(private usersService: UsersService) {}

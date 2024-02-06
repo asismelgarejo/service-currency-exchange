@@ -1,4 +1,4 @@
-import Application from "./main";
+import Application from "./main.js";
 
 async function bootstrap(): Promise<any> {
   const app = new Application();

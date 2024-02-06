@@ -1,5 +1,5 @@
-import httpStatus, { ReasonPhrases } from "http-status-codes";
-import { ErrorNotAuthorized, ErrorNotFound } from "../constants/interfaces";
+import httpStatus from "http-status-codes";
+import { ErrorNotAuthorized, ErrorNotFound } from "../constants/interfaces.js";
 
 export const getError = (err: any): { status: number; message: string } => {
   switch (true) {

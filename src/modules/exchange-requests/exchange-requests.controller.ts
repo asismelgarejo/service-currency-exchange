@@ -1,10 +1,9 @@
 import ExchangeRequestsService from "./exchange-requests.service";
 import { Response, Router, Request } from "express";
 import httpStatus, { ReasonPhrases } from "http-status-codes";
-import { authenticateToken } from "../../middlewares/authenticateToken";
-import { Middlewares } from "../../constants/interfaces";
-import { ExchangeRequestsDTO, ValidateExchangeRequestDTO } from "./interfaces";
-import { ValidatePayload } from "../../toolbox/ValidatePayload";
+import { Middlewares } from "../../constants/interfaces.js";
+import { ExchangeRequestsDTO, ValidateExchangeRequestDTO } from "./interfaces/index.js";
+import { ValidatePayload } from "../../toolbox/ValidatePayload.js";
 
 export default class ProductController {
   constructor(

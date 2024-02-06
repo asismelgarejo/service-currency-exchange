@@ -1,9 +1,9 @@
-import { generateAccessToken } from "../../toolbox/generateAccessToken";
 
 import jwt from "jsonwebtoken";
 import * as bcrypt from "bcrypt";
-import { UserDTO, UserModelType } from "../users/interfaces";
-import { ErrorNotAuthorized, ErrorNotFound } from "../../constants/interfaces";
+import { UserDTO, UserModelType } from "../users/interfaces/index.js";
+import { generateAccessToken } from "../../toolbox/generateAccessToken.js";
+import { ErrorNotAuthorized, ErrorNotFound } from "../../constants/interfaces.js";
 
 export default class AuthService {
   constructor(private model: UserModelType) {}

@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import { BootstrapSchema, ExchangeRequestsSchema } from "./schema";
-import ExchangeRequestsController from "./exchange-requests.controller";
-import ExchangeRequestsService from "./exchange-requests.service";
 import { Router } from "express";
-import { Middlewares } from "../../constants/interfaces";
+import { BootstrapSchema, ExchangeRequestsSchema } from "./schema/index.js";
+import ExchangeRequestsController from "./exchange-requests.controller.js";
+import ExchangeRequestsService from "./exchange-requests.service.js";
+import { Middlewares } from "../../constants/interfaces.js";
 
 export default class ExchangeRequestsModule {
   constructor() {}

@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import {
   ExchangeRequests,
   ExchangeRequestsModelType,
-} from "../../interfaces/exchange-requests.interfaces";
+} from "../../interfaces/exchange-requests.interfaces.js";
 
 export const ExchangeRequestsSchema = new Schema(
   {

@@ -1,4 +1,4 @@
-import { UserDTO, UserModelType } from "./interfaces";
+import { UserDTO, UserModelType } from "./interfaces/index.js";
 
 
 export default class UsersService {

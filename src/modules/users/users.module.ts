@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import { BootstrapSchema, UserSchema } from "./schema";
-import UsersController from "./users.controller";
-import UsersService from "./users.service";
 import { Router } from "express";
+import { BootstrapSchema, UserSchema } from "./schema/index.js";
+import UsersController from "./users.controller.js";
+import UsersService from "./users.service.js";
 
 export default class UsersModule {
   constructor() {}
@@ -10,7 +10,7 @@ export default class UsersModule {
   static async Init(dbClient: typeof mongoose, router: Router) {
     const userModel = BootstrapSchema(dbClient, UserSchema);
     const usersService = new UsersService(userModel);
-    const usersController = new UsersController(usersService);
+    const usersController = new UsersController();
     const subRoutes = usersController.Init();
     router.use("/users", subRoutes);
     return { UserSchema, usersService };

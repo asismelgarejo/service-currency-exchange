@@ -1,6 +1,6 @@
 import httpStatus from "http-status-codes";
 import { Response } from "express";
-import { getError } from "./getError";
+import { getError } from "./getError.js";
 
 export function ValidatePayload(getErrors: (data: any) => any) {
   return function (

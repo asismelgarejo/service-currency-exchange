@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import AuthController from "./auth.controller";
-import AuthService from "./auth.service";
 import { Router } from "express";
-import { BootstrapSchema, UserSchema } from "../users/schema";
+import AuthController from "./auth.controller.js";
+import AuthService from "./auth.service.js";
+import { BootstrapSchema, UserSchema } from "../users/schema/index.js";
 
 export default class UsersModule {
   constructor() {}

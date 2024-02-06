@@ -1,7 +1,6 @@
-import UsersService from "./users.service";
 import { Router } from "express";
-export default class ProductController {
-  constructor(private usersService: UsersService) {}
+export default class UserController {
+  constructor() {}
 
   Init(): Router {
     const router = Router();

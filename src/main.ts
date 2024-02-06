@@ -1,21 +1,22 @@
 import express, { Express } from "express";
 import cors from "cors";
 import pkg from "body-parser";
-const { urlencoded } = pkg;
-import UsersModule from "./modules/users/users.module";
-import ExchangeRequestsModule from "./modules/exchange-requests/exchange-requests.module";
-import AuthModule from "./modules/auth/auth.module";
+
 import * as dotenv from "dotenv";
 import * as path from "path";
-import { PORT } from "./constants/app";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-import { InitializeDB } from "./database";
-import { authenticateToken } from "./middlewares/authenticateToken";
-import { Middlewares } from "./constants/interfaces";
+import UsersModule from "./modules/users/users.module.js";
+import ExchangeRequestsModule from "./modules/exchange-requests/exchange-requests.module.js";
+import AuthModule from "./modules/auth/auth.module.js";
+import { PORT } from "./constants/app.js";
+import { InitializeDB } from "./database/index.js";
+import { authenticateToken } from "./middlewares/authenticateToken.js";
+import { Middlewares } from "./constants/interfaces.js";
 
+const { urlencoded } = pkg;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default class Application {

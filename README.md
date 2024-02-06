@@ -39,10 +39,10 @@ Make sure you have Docker and Docker Compose installed on your system.
 
   ```json
   {
-    "Email": "luz.inga@gmail.com",
+    "Email": "asismelgarejo@gmail.com",
     "Password": "123456",
-    "FirstName": "Luz",
-    "LastName": "Inga"
+    "FirstName": "Asis",
+    "LastName": "Melgarejo"
   }
   ```
 
@@ -66,7 +66,7 @@ Make sure you have Docker and Docker Compose installed on your system.
 
   ```json
   {
-    "Email": "luz.inga@gmail.com",
+    "Email": "asismelgarejo@gmail.com",
     "Password": "123456"
   }
   ```

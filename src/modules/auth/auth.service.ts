@@ -1,7 +1,7 @@
-import { ACCESS_TOKEN } from "../../constants/app";
 import { generateAccessToken } from "../../toolbox/generateAccessToken";
 
 import jwt from "jsonwebtoken";
+import * as bcrypt from "bcrypt";
 import { UserDTO, UserModelType } from "../users/interfaces";
 
 export default class AuthService {
@@ -9,6 +9,8 @@ export default class AuthService {
 
   async signup(userDto: UserDTO): Promise<void> {
     try {
+      // const salt = await bcrypt.genSalt()
+      userDto.Password = await bcrypt.hash(userDto.Password, 10);
       await this.model.create(userDto);
     } catch (error) {
       console.log("AuthService: ", error);
@@ -18,11 +20,12 @@ export default class AuthService {
 
   async findUser(Email: string, Password: string): Promise<UserDTO> {
     try {
-      const response = await this.model.findOne({ Email, Password });
-      if (!response) {
-        throw new Error("the user does not exist");
+      let user = await this.model.findOne({ Email });
+      if (!user) throw new Error("email or password is incorrect");
+      if (!(await bcrypt.compare(Password, user.Password))) {
+        throw new Error("email or incorrect");
       }
-      return response?.toJSON();
+      return user?.toJSON();
     } catch (error) {
       console.log("UsersService: findUser", error);
       throw error;

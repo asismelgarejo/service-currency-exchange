@@ -90,24 +90,28 @@ Make sure you have Docker and Docker Compose installed on your system.
 
 - **Method**: GET
 - **URL**: {{baseUrl}}/exchanges
+- **Authentication**: Bearer Token required
 
 #### Get Exchange by ID
 
 - **Method**: GET
 - **URL**: {{baseUrl}}/exchanges/:ID
 - **ID Example**: 65c2b6589487e8f1e89ba851
+- **Authentication**: Bearer Token required
 
 #### Delete Exchange by ID
 
 - **Method**: DELETE
 - **URL**: {{baseUrl}}/exchanges/:ID
 - **ID Example**: 65c2b6589487e8f1e89ba851
+- **Authentication**: Bearer Token required
 
 #### Create Exchange
 
 - **Method**: POST
 - **URL**: {{baseUrl}}/exchanges
 - **Content-Type**: Application/json
+- **Authentication**: Bearer Token required
 - **Body**:
 
   ```json

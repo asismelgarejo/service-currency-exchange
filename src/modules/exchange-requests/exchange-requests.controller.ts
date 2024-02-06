@@ -29,7 +29,9 @@ export default class ProductController {
 
   async getExchanges(req: Request, res: Response) {
     try {
-      const data = await this.exchangeRequestsService.getExchanges();
+      const data = await this.exchangeRequestsService.getExchanges(
+        (req as unknown as any)!.user._id
+      );
       res.status(httpStatus.OK).json({ data });
     } catch (err) {
       res
@@ -39,9 +41,7 @@ export default class ProductController {
   }
   @ValidatePayload(ValidateExchangeRequestDTO)
   async requestExchange(req: Request, res: Response) {
-    console.log((req as unknown as any)!.user);
     const payload = req.body as unknown as ExchangeRequestsDTO;
-
     try {
       await this.exchangeRequestsService.requestExchange(
         payload,

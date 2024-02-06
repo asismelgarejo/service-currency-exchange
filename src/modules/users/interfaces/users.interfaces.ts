@@ -1,7 +1,10 @@
 import { Document, Model } from "mongoose";
-import { UserDTO } from "./users.dto";
+export interface UserDocument extends Document {
+  Email: string;
+  Password: string;
+  FirstName: string;
+  LastName: string;
+  Status: "Active" | "Suspended";
+}
 
-//#region ORDER
-export interface UserDocument extends Document<any, any, any>, UserDTO {}
 export type UserModelType = Model<UserDocument>;
-//#endregion ORDER

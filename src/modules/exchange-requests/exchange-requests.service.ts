@@ -5,13 +5,16 @@ import {
   ExchangeRequestsModelType,
 } from "./interfaces";
 import { CambioSeguroResponse, HttpResponse } from "../../constants/interfaces";
+import { Types } from "mongoose";
 
 export default class UsersService {
   constructor(private model: ExchangeRequestsModelType) {}
 
-  async getExchanges(): Promise<ExchangeRequestsDTO[]> {
+  async getExchanges(userId: string): Promise<ExchangeRequestsDTO[]> {
     try {
-      return this.model.find();
+      return this.model.find({
+        "tasa_de_cambio.id_usuario": new Types.ObjectId(userId),
+      });
     } catch (error) {
       console.log("UsersService: ", error);
       throw error;

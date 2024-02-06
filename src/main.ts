@@ -27,7 +27,11 @@ export default class Application {
     app.use(cors());
     app.use(urlencoded({ extended: false }));
 
-    const envPath = path.resolve(__dirname, "..", ".development.env");
+    const envPath = path.resolve(
+      __dirname,
+      "..",
+      process.env.NODE_ENV === "prod" ? ".production.env" : ".development.env"
+    );
     dotenv.config({ path: envPath });
 
     this.app = app;

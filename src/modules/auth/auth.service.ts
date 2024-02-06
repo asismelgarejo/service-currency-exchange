@@ -1,6 +1,6 @@
 
 import jwt from "jsonwebtoken";
-import * as bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { UserDTO, UserModelType } from "../users/interfaces/index.js";
 import { generateAccessToken } from "../../toolbox/generateAccessToken.js";
 import { ErrorNotAuthorized, ErrorNotFound } from "../../constants/interfaces.js";

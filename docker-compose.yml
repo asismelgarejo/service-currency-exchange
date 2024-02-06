@@ -1,0 +1,23 @@
+version: '2.2'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodbexchange
+    ports:
+      - 27017:27017
+    networks:
+      - exchange-net
+  exchange:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: exchange-service
+    ports:
+      - "4000:4000"
+    networks:
+      - exchange-net
+    environment:
+      - NODE_ENV=prod
+networks:
+  exchange-net:
+    driver: bridge

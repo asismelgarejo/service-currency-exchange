@@ -1,11 +1,8 @@
-type UserStatus = "Active" | "Suspended";
+export type TipoDeCambio = "compra" | "venta";
+
 export interface ExchangeRequestsDTO {
-  ID: string;
-  Email: string;
-  Password: string;
-  FirstName: string;
-  LastName: string;
-  Status: UserStatus;
+  TipoDeCambio: TipoDeCambio;
+  MontoEnviar: number;
 }
 
 

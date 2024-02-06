@@ -4,6 +4,5 @@ export interface UserDTO {
   Password: string;
   FirstName: string;
   LastName: string;
+  Status?: UserStatus;
 }
-
-

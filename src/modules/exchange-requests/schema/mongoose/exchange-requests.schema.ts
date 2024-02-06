@@ -1,33 +1,32 @@
 import mongoose, { Schema } from "mongoose";
-import { ExchangeRequests, ExchangeRequestsModelType } from "../../interfaces/exchange-requests.interfaces";
+import {
+  ExchangeRequests,
+  ExchangeRequestsModelType,
+} from "../../interfaces/exchange-requests.interfaces";
 
 export const ExchangeRequestsSchema = new Schema(
   {
-    Date: String,
-    Order: {
+    tipo_de_cambio: {
       type: String,
-      unique: true,
+      enum: ["compra", "venta"],
     },
-    FinalPrice: Number,
-    Status: {
-      type: String,
-      enum: ["Pending", "InProgress", "Completed"],
-    },
-    Products: [
-      {
-        Product: {
-          type: Schema.Types.ObjectId,
-          ref: "Product",
-        },
-        Qty: {
-          type: Number,
-          default: 1,
-        },
-        TotalPrice: {
-          type: Number,
-        },
+    tasa_de_cambio: {
+      _id: {
+        type: Schema.Types.ObjectId,
       },
-    ],
+      purchase_price: {
+        type: Number,
+      },
+      monto_enviar: {
+        type: Number,
+      },
+      monto_recibir: {
+        type: Number,
+      },
+      id_usuario: {
+        type: Schema.Types.ObjectId,
+      },
+    },
   },
   {
     virtuals: {
@@ -42,6 +41,12 @@ export const ExchangeRequestsSchema = new Schema(
 
 ExchangeRequestsSchema.set("toJSON", { virtuals: true });
 
-export default function BootstrapSchema(dbClient: typeof mongoose, schema: Schema) {
-  return dbClient.model<ExchangeRequests, ExchangeRequestsModelType>("ExchangeRequests", schema);
+export default function BootstrapSchema(
+  dbClient: typeof mongoose,
+  schema: Schema
+) {
+  return dbClient.model<ExchangeRequests, ExchangeRequestsModelType>(
+    "ExchangeRequests",
+    schema
+  );
 }

@@ -9,7 +9,6 @@ export default class AuthService {
 
   async signup(userDto: UserDTO): Promise<void> {
     try {
-      // const salt = await bcrypt.genSalt()
       userDto.Password = await bcrypt.hash(userDto.Password, 10);
       await this.model.create(userDto);
     } catch (error) {

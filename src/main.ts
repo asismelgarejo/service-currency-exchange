@@ -48,7 +48,7 @@ export default class Application {
     });
 
     this.app.use((_, res, _2) => {
-      res.status(404).json({ error: "NOT FOUND" });
+      res.status(404).json({ error: "ROUTE NOT FOUND" });
     });
 
     this.app.listen(PORT, function () {

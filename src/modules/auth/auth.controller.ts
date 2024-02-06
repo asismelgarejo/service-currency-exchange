@@ -2,7 +2,6 @@ import { HttpResponse } from "../../constants/interfaces";
 import UsersService from "./auth.service";
 import { Response, Router, Request } from "express";
 import httpStatus, { ReasonPhrases } from "http-status-codes";
-import { authenticateToken } from "../../middlewares/authenticateToken";
 import { UserDTO } from "../users/interfaces";
 
 export default class ProductController {
@@ -18,8 +17,8 @@ export default class ProductController {
   async signup(req: Request, res: Response) {
     const payload = req.body as unknown as UserDTO;
     try {
-      const response = await this.usersService.signup(payload);
-      res.status(httpStatus.CREATED).json({ data: response });
+      await this.usersService.signup(payload);
+      res.status(httpStatus.CREATED).json({ message: "success" });
     } catch (err) {
       res
         .status(httpStatus.INTERNAL_SERVER_ERROR)

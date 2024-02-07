@@ -6,7 +6,7 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "outDir": "./build",
-    "rootDir": ".",
+    "rootDir": "./src",
     "resolveJsonModule": true,
     "experimentalDecorators": true,
     "typeRoots": ["./src/custom_types", "./node_modules/@types"],

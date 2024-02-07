@@ -25,7 +25,7 @@ export default class ExchangeService {
         })
         .exec();
       if (!response) {
-        throw new ErrorNotFound(`Exchange request with ID ${exchangeId} was not found`);
+        throw new ErrorNotFound(`exchange request with ID '${exchangeId}' was not found`);
       }
       return response;
     } catch (error) {
@@ -37,10 +37,10 @@ export default class ExchangeService {
     try {
       const response = await this.model.deleteOne({ _id: new Types.ObjectId(exchangeId), "tasa_de_cambio.id_usuario": new Types.ObjectId(userId) });
       if (response.deletedCount === 0) {
-        throw new ErrorNotFound("the order does not exist. No document was deleted");
+        throw new ErrorNotFound(`exchange request with ID '${exchangeId}' was not found`);
       }
     } catch (error) {
-      console.log("OrderService: deleteExchange", error?.message);
+      console.log("ExchangeService: deleteExchange", error?.message);
       throw error;
     }
   }

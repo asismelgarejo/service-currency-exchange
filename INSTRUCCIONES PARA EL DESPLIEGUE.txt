@@ -1,0 +1,10 @@
+Pasos para desplegar la aplicación dockerizada en AWS ECS
+
+1. Preparación de la imagen Docker: Asegúrate de que tu aplicación esté dockerizada correctamente y puedas construir una imagen Docker desde tu aplicación.
+2. Registro de imágenes en un repositorio de contenedores: Sube tu imagen Docker a un repositorio de contenedores compatible con AWS, como Amazon ECR.
+3. Configuración de un clúster de ECS: Crea un clúster de ECS en la consola de AWS ECS si aún no tienes uno.
+4. Creación de una definición de tarea: Define la configuración de tu aplicación en un archivo JSON o YAML, incluyendo la imagen del contenedor, la cantidad de recursos asignados, etc.
+5. Creación de un servicio ECS: Crea un servicio ECS que utilice la definición de tarea que creaste para ejecutar y escalar tu aplicación.
+6. Configuración de un balanceador de carga: Configura un balanceador de carga de aplicación (ALB) o de red (NLB) para dirigir el tráfico entrante a tus contenedores ECS.
+7. Configuración de la cadena de conexión a la base de datos: Asegúrate de que tu aplicación utilice el string de conexión válido a tu base de datos existente.
+8. Despliegue de la aplicación: Despliega tu servicio ECS en el clúster. Esto lanzará tus contenedores Docker en AWS y los hará accesibles a través del balanceador de carga.

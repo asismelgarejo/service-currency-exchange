@@ -5,7 +5,7 @@ export function generateAccessToken(userDto: UserDTO) {
   const accessToken = jwt.sign(
     { email: userDto.Email },
     process.env.ACCESS_TOKEN_SECRET || "",
-    { expiresIn: "10m" }
+    { expiresIn: "5m" }
   );
   return accessToken;
 }

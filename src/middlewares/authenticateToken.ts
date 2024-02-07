@@ -19,7 +19,7 @@ export const authenticateToken = (userService: UsersService) => {
 
       if (!user) {
         console.log("authenticateToken User not found", response.email);
-        res.status(httpStatus.FORBIDDEN).json({});
+        res.status(httpStatus.FORBIDDEN).json({ message: "FORBIDDEN" });
         return;
       }
 

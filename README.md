@@ -123,5 +123,5 @@ Make sure you have Docker and Docker Compose installed on your system.
 
 ## Additional Notes
 
-- The MongoDB service is exposed on port `27017`.
+- The MongoDB service is exposed on port `27021`.
 - The Exchange service is configured to run with `NODE_ENV` set to `prod`. You can modify the environment variables in the `docker-compose.yml` file if needed.

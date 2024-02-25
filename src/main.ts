@@ -31,7 +31,7 @@ export default class Application {
     const envPath = path.resolve(
       __dirname,
       "..",
-      process.env.NODE_ENV === "prod" ? ".production.env" : ".development.env"
+      process.env.NODE_ENV || ".development.env"
     );
     dotenv.config({ path: envPath });
 

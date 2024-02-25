@@ -8,7 +8,6 @@ export default class UsersModule {
   constructor() {}
 
   static async Init(dbClient: typeof mongoose, router: Router) {
-    BootstrapSchema(dbClient, UserSchema);
     const userModel = BootstrapSchema(dbClient, UserSchema);
     const authService = new AuthService(userModel);
     const authController = new AuthController(authService);

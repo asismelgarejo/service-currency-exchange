@@ -1,4 +1,3 @@
-
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { UserDTO, UserModelType } from "../users/interfaces/index.js";
@@ -32,17 +31,12 @@ export default class AuthService {
     }
   }
 
-  async signIn(
-    userDto: UserDTO
-  ): Promise<{ accessToken: string; refreshToken: string }> {
+  async signIn(userDto: UserDTO): Promise<{ accessToken: string; refreshToken: string }> {
     try {
       await this.findUser(userDto.Email, userDto.Password);
 
       const accessToken = generateAccessToken(userDto);
-      const refreshToken = jwt.sign(
-        { user: userDto.Email },
-        process.env.REFRESH_TOKEN_SECRET || ""
-      );
+      const refreshToken = jwt.sign({ user: userDto.Email }, process.env.REFRESH_TOKEN_SECRET || "");
       return { accessToken, refreshToken };
     } catch (error) {
       console.log("AuthService: ", error);
@@ -51,10 +45,7 @@ export default class AuthService {
   }
   async refreshToken(token: string): Promise<{ accessToken: string }> {
     try {
-      const response = jwt.verify(
-        token,
-        process.env.REFRESH_TOKEN_SECRET || ""
-      );
+      const response = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET || "");
       const accessToken = generateAccessToken(response as UserDTO);
       return { accessToken };
     } catch (error) {
@@ -64,10 +55,7 @@ export default class AuthService {
   }
   async logout(token: string): Promise<{ accessToken: string }> {
     try {
-      const response = jwt.verify(
-        token,
-        process.env.REFRESH_TOKEN_SECRET || ""
-      );
+      const response = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET || "");
       const accessToken = generateAccessToken(response as UserDTO);
       return { accessToken };
     } catch (error) {

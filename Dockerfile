@@ -1,13 +1,21 @@
-FROM node:18-alpine as dev
+# Stage 1: Build stage
+FROM node:18-alpine as builder
 
-RUN npm install -g typescript
-
+RUN apk --no-cache add git python3 make g++
 WORKDIR /app
-
-ENV NODE_ENV=prod
-COPY package*.json .
-RUN npm install
+RUN npm install -g typescript
+COPY package*.json ./
+RUN npm ci
 COPY . .
 RUN npm run build
-CMD ["npm", "start"]
 
+# Stage 2: Production stage
+FROM node:18-alpine as production
+WORKDIR /app
+COPY --from=builder /app/build ./build
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.*.env .
+COPY --from=builder /app/package.json ./package.json
+ENV NODE_ENV=production
+
+CMD ["npm", "start"]
